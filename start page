@@ -6,15 +6,15 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
 public class box {
+    public static void createAndShowGUI() {
+        JFrame f = new JFrame("Customer Page");//creating instance of JFrame
 
-    public static void main(String[] args) {
-        JFrame f=new JFrame();//creating instance of JFrame
 
-        //JButton b=new JButton("enter");//creating instance of JButton
-        //b.setBounds(130,100,100, 40);//x axis, y axis, width, height
+            //JButton b=new JButton("enter");//creating instance of JButton
+            //b.setBounds(130,100,100, 40);//x axis, y axis, width, height
 
-        //JTextField textField = new JTextField();
-        //textField.setBounds(130, 130, 150, 30);
+            //JTextField textField = new JTextField();
+            //textField.setBounds(130, 130, 150, 30);
 
         JButton button2 = new JButton("Track");
         button2.setBounds(150, 160, 100, 40);
@@ -33,11 +33,9 @@ public class box {
         f.add(textField2);
 
 
-        f.setSize(400,500);//400 width and 500 height
+        f.setSize(400, 500);//400 width and 500 height
         f.setLayout(null);//using no layout managers
         f.setVisible(true);//making the frame visible
-        
-
 
 
     }
@@ -68,4 +66,3 @@ public class box {
 
 
 }
-
