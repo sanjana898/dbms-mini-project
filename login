@@ -7,6 +7,9 @@ public class login {
     public static void main(String[] args) {
         JFrame f=new JFrame();
 
+        Color coral = new Color(170,127,100);
+        f.getContentPane().setBackground(coral);
+
         JButton button1 = new JButton("Login as Company");
         button1.setBounds(110, 160, 200, 40);
 
