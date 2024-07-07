@@ -16,6 +16,9 @@ public class box {
             //JTextField textField = new JTextField();
             //textField.setBounds(130, 130, 150, 30);
 
+        Color coral = new Color(170,127,100);
+        f.getContentPane().setBackground(coral);
+
         JButton button2 = new JButton("Track");
         button2.setBounds(150, 160, 100, 40);
 
