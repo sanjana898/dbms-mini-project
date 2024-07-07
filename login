@@ -13,6 +13,13 @@ public class login {
         JButton button2 = new JButton("Login as Customer");
         button2.setBounds(110, 200, 200, 40);
 
+         button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                box.createAndShowGUI();
+            }
+        });
+
         f.add(button1);
         f.add(button2);
 
