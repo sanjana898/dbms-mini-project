@@ -1,0 +1,119 @@
+package dbmsproj;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.geom.RoundRectangle2D;
+
+// Custom ImageIcon with rounded corners
+class roundedCornerIcon extends ImageIcon {
+    private int cornerRadius; // Radius of the rounded corners
+
+    public roundedCornerIcon(Image image, int cornerRadius) {
+        super(image);
+        this.cornerRadius = cornerRadius;
+    }
+
+    @Override
+    public void paintIcon(Component c, Graphics g, int x, int y) {
+        // Create a rounded rectangle clipping area
+        RoundRectangle2D.Double roundRect = new RoundRectangle2D.Double(x, y, getIconWidth(), getIconHeight(), cornerRadius, cornerRadius);
+        Graphics2D g2 = (Graphics2D) g.create();
+        g2.setClip(roundRect);
+
+        // Paint the icon
+        super.paintIcon(c, g2, x, y);
+
+        g2.dispose();
+    }
+}
+
+public class company {
+
+    public static void createAndShowGUI() {
+        JFrame f = new JFrame("Company Page");//creating instance of JFrame
+
+        Color coral = new Color(89, 167, 245, 247);
+        f.getContentPane().setBackground(coral);
+
+        BackgroundPanel backgroundPanel = new BackgroundPanel("/Users/sanjanajoshi/Documents/Engg/4th sem/DBMS/background.png", 0.5f);
+        backgroundPanel.setLayout(null);
+        f.setContentPane(backgroundPanel);
+
+        ImageIcon originalIcon = new ImageIcon("/Users/sanjanajoshi/Documents/Engg/4th sem/DBMS/truck.png"); // Replace with your icon path
+        //ImageIcon phoneIcon = new ImageIcon("path/to/your/phoneIcon.png");
+
+        Image originalImage = originalIcon.getImage();
+
+        // Resize the image to fit within a 100x100 area without cropping
+        Image resizedImage = originalImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+
+        // Create a new ImageIcon with the resized image
+        ImageIcon resizedIcon = new ImageIcon(resizedImage);
+
+        roundedCornerIcon roundedIcon = new roundedCornerIcon(resizedImage, 15); // 15 is the radius of the rounded corners
+
+        // Create JLabel with the rounded-corner ImageIcon
+        JLabel iconLabel = new JLabel(roundedIcon);
+        iconLabel.setBounds(20, 90, 100, 100);
+        f.add(iconLabel);
+
+
+        JButton button2 = new JButton("Login");
+        button2.setBounds(150, 240, 100, 40);
+
+        JTextField textField = new JTextField();
+        textField.setBounds(130, 140, 180, 30); // x axis, y axis, width, height
+        addPlaceholderText(textField, "Enter your Employee ID");
+
+        JLabel orderNoLabel = new JLabel("Employee ID");
+        orderNoLabel.setBounds(130, 120, 80, 30);
+        orderNoLabel.setForeground(Color.BLACK);
+
+        JLabel phoneNoLabel = new JLabel("Password");
+        phoneNoLabel.setBounds(130, 170, 80, 30);
+        phoneNoLabel.setForeground(Color.BLACK);
+
+        JTextField textField2 = new JTextField();
+        textField2.setBounds(130, 190, 180, 30); // x axis, y axis, width, height
+        addPlaceholderText(textField2, "Enter your password");
+
+        f.add(textField);
+        f.add(orderNoLabel);
+        f.add(phoneNoLabel);
+        f.add(button2);
+        f.add(textField2);
+
+
+        f.setSize(400, 500);//400 width and 500 height
+        f.setLayout(null);//using no layout managers
+        f.setVisible(true);//making the frame visible
+
+
+    }
+    private static void addPlaceholderText(JTextField textField, String placeholder) {
+        // Add a FocusListener to handle placeholder text
+        textField.setForeground(Color.GRAY);
+        textField.setText(placeholder);
+
+        textField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (textField.getText().equals(placeholder)) {
+                    textField.setText("");
+                    textField.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (textField.getText().isEmpty()) {
+                    textField.setForeground(Color.GRAY);
+                    textField.setText(placeholder);
+                }
+            }
+        });
+    }
+
+}
