@@ -9,21 +9,15 @@ public class box {
     public static void createAndShowGUI() {
         JFrame f = new JFrame("Customer Page");//creating instance of JFrame
 
-
-            //JButton b=new JButton("enter");//creating instance of JButton
-            //b.setBounds(130,100,100, 40);//x axis, y axis, width, height
-
-            //JTextField textField = new JTextField();
-            //textField.setBounds(130, 130, 150, 30);
-
-        Color coral = new Color(170,127,100);
+        Color coral = new Color(89, 167, 245, 247);
         f.getContentPane().setBackground(coral);
 
+
         JButton button2 = new JButton("Track");
-        button2.setBounds(150, 160, 100, 40);
+        button2.setBounds(150, 240, 100, 40);
 
         JTextField textField = new JTextField();
-        textField.setBounds(130, 100, 150, 30); // x axis, y axis, width, height
+        textField.setBounds(130, 140, 180, 30); // x axis, y axis, width, height
         addPlaceholderText(textField, "Enter your Order No.");
 
         JLabel orderNoLabel = new JLabel("Order No.");
@@ -35,11 +29,12 @@ public class box {
         phoneNoLabel.setForeground(Color.WHITE);
 
         JTextField textField2 = new JTextField();
-        textField2.setBounds(130, 130, 150, 30); // x axis, y axis, width, height
+        textField2.setBounds(130, 190, 180, 30); // x axis, y axis, width, height
         addPlaceholderText(textField2, "Enter your Phno.");
 
         f.add(textField);
-        //f.add(b);//adding button in JFrame
+        f.add(orderNoLabel);
+        f.add(phoneNoLabel);
         f.add(button2);
         f.add(textField2);
 
@@ -73,7 +68,5 @@ public class box {
             }
         });
     }
-
-
 
 }
