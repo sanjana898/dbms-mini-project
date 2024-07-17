@@ -1,0 +1,55 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+public class create_table {
+    private static final String URL = "jdbc:mysql://localhost:3306/courier_management_services";
+    private static final String USER = "root";
+    private static final String PASSWORD = "tcdav";
+
+    // JDBC variables for opening and managing connection
+    private static Connection connection;
+
+    public static void main(String[] args) {
+        try {
+            // Load the MySQL JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Open a connection to the database
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+
+            // Create a statement object to execute the query
+            Statement statement = connection.createStatement();
+
+            // SQL query to create a table
+            String createTableSQL = "CREATE TABLE IF NOT EXISTS CUSTOMER ("
+                    + "id INT AUTO_INCREMENT PRIMARY KEY, "
+                    + "first_name VARCHAR(50), "
+                    + "last_name VARCHAR(50), "
+                    + "email VARCHAR(100), "
+                    + "salary DECIMAL(15, 2)"
+                    + ")";
+
+            // Execute the query
+            statement.execute(createTableSQL);
+
+            System.out.println("Table created successfully.");
+
+        } catch (ClassNotFoundException e) {
+            System.out.println("MySQL JDBC Driver not found.");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+        } finally {
+            // Close the connection
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
